@@ -1,8 +1,15 @@
 'use strict';
 
-/**
- * Read the documentation (https://strapi.io/documentation/v3.x/concepts/models.html#lifecycle-hooks)
- * to customize this model
- */
+const axios = require('axios');
 
-module.exports = {};
+module.exports = {
+  
+  lifecycles: {
+    async afterCreate(result, data) {
+      axios.post('https://api.netlify.com/build_hooks/5fac0ce6a25d9a1d55907939');
+    },
+    async afterUpdate(result, params, data) {
+      axios.post('https://api.netlify.com/build_hooks/5fac0ce6a25d9a1d55907939');
+    },
+  }
+};
